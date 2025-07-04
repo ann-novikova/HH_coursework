@@ -18,6 +18,8 @@ class Vacancy:
         description: str,
         requirements: str,
     ) -> None:
+        """Конкструктор для создания экзепмляра класса Vacancy"""
+
         self.vacancy_id = self.__validate_id(vacancy_id)
         self.name = self.__validate_name(name)
         self.company = self.__validate_company(company)

@@ -50,4 +50,6 @@ def sort_vacancies(ranged_vacancies: list[dict]) -> list[dict]:
 
 
 def get_top_vacancies(sorted_vacancies: list[dict], top_n: int) -> list[dict]:
+    """Функция для выбора TOP_n выкансий по заработной плате"""
+
     return sorted_vacancies[:top_n]

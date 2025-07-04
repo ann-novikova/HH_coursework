@@ -42,10 +42,14 @@ class JsonWorker(FileWorker):
     data_file: list[dict]
 
     def __init__(self, filename: str = "vacancy.json") -> None:
+        """Конструктор для создания экзампляра класс JsonWorker"""
+
         self.__filename = data_path / filename
         self.data_file = []
 
     def open_file(self) -> None:
+        """Метод для открытия файла и чтение его содержимого"""
+
         if not self.__filename.is_file():
             print("Файла не существует, для начала работы создайте файл с помощью метода write_data")
         else:
@@ -53,11 +57,15 @@ class JsonWorker(FileWorker):
                 self.data_file = json.load(file)
 
     def write_data(self, data: list[dict], file_mode: str = "w") -> None:
+        """Метод для записи данных в файл"""
+
         with open(self.__filename, file_mode, encoding="utf-8") as file:
             file.write(json.dumps(data, ensure_ascii=False, indent=4))
         self.data_file = data
 
     def add_vacancy(self, vacancy: Vacancy) -> None:
+        """Метод для добавления Вакансии в файл"""
+
         if isinstance(vacancy, Vacancy):
             existing_id = [vacancy["vacancy_id"] for vacancy in self.data_file]
             if vacancy.vacancy_id not in existing_id:
@@ -78,5 +86,6 @@ class JsonWorker(FileWorker):
             raise TypeError("Возможно удаление данных только класса Вакансия")
 
     def search(self, keyword: str) -> Generator | None:
+        """Метод для поиска Вакансии по ключевому слову"""
 
         return (vacancy for vacancy in self.data_file if keyword in vacancy.values())

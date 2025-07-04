@@ -55,6 +55,8 @@ class HeadHunterAPI(Parser):
             return False
 
     def load_vacancies(self, keyword: str) -> list[dict]:
+        """Метод для получения вакансий."""
+
         if not self._connect_to_api():
             return []
         self.__params["text"] = keyword
